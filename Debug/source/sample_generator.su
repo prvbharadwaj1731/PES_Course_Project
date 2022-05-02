@@ -1,0 +1,2 @@
+sample_generator.c:25:8:tone_to_samples	56	static
+sample_generator.c:46:6:adc_analysis	56	static

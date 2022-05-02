@@ -1,0 +1,2 @@
+mma8451q.c:27:6:init_mma8451q	8	static
+mma8451q.c:33:5:read_full_xyz	48	static

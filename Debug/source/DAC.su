@@ -1,0 +1,8 @@
+core_cm0plus.h:745:22:NVIC_EnableIRQ	16	static
+core_cm0plus.h:791:22:NVIC_ClearPendingIRQ	16	static
+core_cm0plus.h:804:22:NVIC_SetPriority	24	static
+DAC.c:21:6:DAC_Init	8	static
+DAC.c:39:6:DMA_Init	8	static
+DAC.c:69:6:TPM0_Init	8	static
+DAC.c:91:6:DMA_start	16	static
+DAC.c:114:6:DMA0_IRQHandler	8	static

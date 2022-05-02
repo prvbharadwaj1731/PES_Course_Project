@@ -1,0 +1,2 @@
+sine_generator.c:41:16:interpolate	32	static
+sine_generator.c:58:9:sine_generate	56	static
