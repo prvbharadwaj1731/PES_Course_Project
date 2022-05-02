@@ -1,2 +1,4 @@
-mma8451q.c:27:6:init_mma8451q	8	static
+mma8451q.c:21:6:init_mma8451q	8	static
 mma8451q.c:33:5:read_full_xyz	48	static
+mma8451q.c:74:6:mma8451q_test	16	static
+mma8451q.c:113:6:mma8451q_calibrate	16	static

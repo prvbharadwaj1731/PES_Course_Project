@@ -9,6 +9,8 @@
 #define MMA8451Q_H_
 
 #include <stdint.h>
+#include <stddef.h>
+#include <stdbool.h>
 
 #define MMA8451Q_I2C_ADDRESS		0x3A
 
@@ -24,6 +26,9 @@
 #define REG_WHOAMI 0x0D
 #define REG_CTRL1  0x2A
 #define REG_CTRL4  0x2D
+#define REG_OFF_X  0x2F
+#define REG_OFF_Z  0x31
+
 
 #define WHOAMI	   0x1A
 
@@ -39,8 +44,8 @@ void init_mma8451q();
 
 int read_full_xyz();
 
-//void read_xyz();
-//
-//void convert_xyz_to_roll_pitch();
+void mma8451q_test();
+
+void mma8451q_calibrate(int, bool);
 
 #endif /* MMA8451Q_H_ */

@@ -40,6 +40,7 @@
  * 					2. The integer-math based sine generator is tested with expected values from the math.h library
  * 					3. ADC is calibrated using the routine provided in the KL25Z reference manual
  * 					4. Musical note test. All available notes are played in succession, with a delay of 500 ms between each note.
+ * 					5. Accelerometer Calibration routine. The user is prompted to place the board in different orientations to compute offset values.
  * 					5. Main while routine, where the roll-angle of the board in x-axis is mapped to a different musical note in the ascending order. We come around this loop
  * 					every 500 ms, which is duration for which a given tone is played.
  */
@@ -110,6 +111,8 @@ printf("Initializing MMA8451Q Accelerometer. Please Wait.\r\n");
 Delay(100);
 printf("Accelerometer initialization completed.\r\n");
 
+
+// Test Functions
 printf("Sine function tests running to check for errors. Please wait.\r\n");
 test_sine();
 printf("Sine function tests complete.\r\n");
@@ -131,10 +134,15 @@ for(int i=0;i<note_frequency_list_size;i++)
 {
 	sample_count = tone_to_samples(note_frequency_list[i], output_buffer, NO_OF_SAMPLES);
 	DMA_start(sample_count, output_buffer);
+	ADC_buffer(input_buffer, NO_OF_SAMPLES);
+	adc_analysis(input_buffer, NO_OF_SAMPLES);
 	Delay(500);
 }
 
 printf("Musical note frequency test complete.\r\n");
+
+//Accelerometer calibration and test
+mma8451q_test();
 
 
 
@@ -147,10 +155,6 @@ printf("Musical note frequency test complete.\r\n");
 			printf("Frequency of musical note played : %d Hz\r\n", note_frequency_list[index]);
 			sample_count = tone_to_samples(note_frequency_list[index], output_buffer, NO_OF_SAMPLES);
 			DMA_start(sample_count, output_buffer);
-			ADC_buffer(input_buffer, NO_OF_SAMPLES);
-			adc_analysis(input_buffer, NO_OF_SAMPLES);
-
 			Delay(500);
 		}
-
 }
