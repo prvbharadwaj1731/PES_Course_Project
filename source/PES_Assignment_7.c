@@ -102,6 +102,7 @@ int note_frequency_list[] = {82, 98, 123, 147,
 							1976, 2349, 2794};
 
 //initializations
+printf("*************************** INITIALIZATION *********************************\r\n\n");
 DAC_Init();
 ADC_Init();
 DMA_Init();
@@ -113,16 +114,22 @@ printf("Initializing MMA8451Q Accelerometer. Please Wait.\r\n");
 Delay(100);
 printf("Accelerometer initialization completed.\r\n");
 
+printf("*************************** TESTS *********************************\r\n\n");
 
 // Test Functions
 printf("Sine function tests running to check for errors. Please wait.\r\n");
 test_sine();
 printf("Sine function tests complete.\r\n");
 
+printf("--------------------------------------------------------------------\r\n\n");
+
+
 printf("Running ADC calibration routine. Please wait.\r\n");
 ADC_calibrate();
 printf("ADC calibration routine complete.\r\n");
 
+
+printf("--------------------------------------------------------------------\r\n\n");
 //initializing again cause ADC config was changed for during calibration routine
 ADC_Init();
 
@@ -143,6 +150,8 @@ for(int i=0;i<note_frequency_list_size;i++)
 
 printf("Musical note frequency test complete.\r\n");
 
+printf("--------------------------------------------------------------------\r\n\n");
+
 //Accelerometer calibration and test
 mma8451q_test();
 
@@ -151,7 +160,7 @@ printf("Type 'Start' to begin musical note generation.\r\n");
 gets(user_input);
 
 while(strcmp(user_input, "Start")){
-	printf("Error. Could not recognize command. Please enter the correct command.\r\n");
+	printf("Error. Could not recognize command. Please enter the correct command. Note that command is case sensitive.\r\n");
 	gets(user_input);
 }
 
@@ -167,7 +176,10 @@ while(strcmp(user_input, "Start")){
 			if(index >= note_frequency_list_size)
 				index = note_frequency_list_size;
 
-			printf("Frequency of musical note played : %d Hz\r\n", note_frequency_list[index]);
+			if(index != 0)
+				index--;
+
+			printf("Frequency of musical note played : %d Hz\r\n\n\n", note_frequency_list[index]);
 			sample_count = tone_to_samples(note_frequency_list[index], output_buffer, NO_OF_SAMPLES);
 			DMA_start(sample_count, output_buffer);
 			Delay(500);
