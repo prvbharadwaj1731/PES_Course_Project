@@ -5,6 +5,11 @@ Final submission in fulfillment of coursework for Principles of Embedded Softwar
 
 This project aims to use the on-board MMA8451Q 3-axis accelerometer in conjunction with the DAC peripheral to generate different musical notes depending on the roll-angle of the board in the X-axis. Only the DEBUG target is to be considered for this project. 
 
+## Hardware Block Diagram
+
+![PES_hardwarre_block_diagram](https://user-images.githubusercontent.com/95208934/166407097-54e0a347-4a29-4fb1-996c-4f45d91a8580.png)
+
+
 ## Repository contents
 
 1. i2c.c & i2c.h - contains all code to intialize I2C0 peripheral at a baud rate of 100k. Further, it also  contains code to allow I2C read and write by accepting device address, register address and input data as the parameters. 
