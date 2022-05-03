@@ -45,6 +45,7 @@
  * 					every 500 ms, which is duration for which a given tone is played.
  */
 #include <stdio.h>
+#include <string.h>
 #include "board.h"
 #include "peripherals.h"
 #include "pin_mux.h"
@@ -86,7 +87,8 @@ int main(void) {
 #endif
 
 int sample_count;
-uint16_t output_buffer[NO_OF_SAMPLES], input_buffer[NO_OF_SAMPLES];; //define holding buffers for DAC and ADC output
+uint16_t output_buffer[NO_OF_SAMPLES]; //define holding buffers for DAC and ADC output
+uint16_t input_buffer[NO_OF_SAMPLES];
 //
 /*
  * Notes used are: (tuned for an equal-tempered scale tuned at A4 = 440 Hz)
@@ -144,13 +146,26 @@ printf("Musical note frequency test complete.\r\n");
 //Accelerometer calibration and test
 mma8451q_test();
 
+char user_input[20]; //to accept user input
+printf("Type 'Start' to begin musical note generation.\r\n");
+gets(user_input);
+
+while(strcmp(user_input, "Start")){
+	printf("Error. Could not recognize command. Please enter the correct command.\r\n");
+	gets(user_input);
+}
 
 
 		while(1){
 			roll_angle = abs(read_full_xyz());
+			if(roll_angle >= MAX_ROLL_ANGLE)
+				roll_angle = MAX_ROLL_ANGLE;
+
 			printf("Roll angle = %d degrees\r\n", roll_angle);
 
 			index = (int)(roll_angle/resolution);
+			if(index >= note_frequency_list_size)
+				index = note_frequency_list_size;
 
 			printf("Frequency of musical note played : %d Hz\r\n", note_frequency_list[index]);
 			sample_count = tone_to_samples(note_frequency_list[index], output_buffer, NO_OF_SAMPLES);

@@ -85,6 +85,7 @@ void mma8451q_test()
 		roll_angle = abs(read_full_xyz());
 		offset = roll_angle - 0;
 	}
+	printf("\r\n");
 	printf("Calibration Complete.\r\n");
 	mma8451q_calibrate(offset, 1);
 	Delay(500); //delay for 500 ms
@@ -99,6 +100,7 @@ void mma8451q_test()
 		roll_angle = abs(read_full_xyz());
 		offset = roll_angle - 90;
 	}
+	printf("\r\n");
 	printf("Calibration Complete.\r\n");
 	mma8451q_calibrate(offset, 0);
 	Delay(500);
