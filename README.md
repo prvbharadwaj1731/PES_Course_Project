@@ -21,6 +21,9 @@ This project aims to use the on-board MMA8451Q 3-axis accelerometer in conjuncti
 
 Musical notes were heard using a small buzzer connected to DAC0 output pin (PTE30). However, musical notes with frequency below 80 Hz were inaudible using this buzzer. Hence, notes with frequency greater than 80 Hz was considered (starting with C0). Similarly, musical notes with frequency above 3 KHz had a sudden decrease in volume due to the buzzer's poor frequency response. Hence notes with frequency greater than 3 KHz were not used. The last musical note considered was F7. The transition between different frequencies produces a noticeable delay, which is realized with a stair-step change in frequency in the demo. This is due to the limitations in the performance of the onboard DAC and the code producing the samples filling the DAC buffer in time. 
 
+## Demo video 
+[Click here for Demo video](https://www.youtube.com/watch?v=qMJ4uztnX1U)
+
 ## References and Citations
 1. Embedded Systems Fundamentals with ARM Cortex-M Based Microcontrollers: Embedded Systems Fundamentals by Alexander G Dean.
 2. Alexander G Dean Github repository with supporting material for the book mentioned above: [Click here](https://github.com/alexander-g-dean/ESF)
